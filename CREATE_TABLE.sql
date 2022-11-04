@@ -1,3 +1,53 @@
+CREATE TABLE actor (
+  actor_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  PRIMARY KEY  (actor_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE category (
+  category_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(25) NOT NULL,
+  PRIMARY KEY  (category_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE 'language' (
+  language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name CHAR(20) NOT NULL,
+  PRIMARY KEY (language_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE film (
+  film_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  title VARCHAR(128) NOT NULL,
+  description TEXT DEFAULT NULL,
+  release_year YEAR DEFAULT NULL,
+  language_id TINYINT UNSIGNED NOT NULL,
+  original_language_id TINYINT UNSIGNED DEFAULT NULL,
+  length SMALLINT UNSIGNED DEFAULT NULL,
+  rating ENUM('G','PG','PG-13','R','NC-17') DEFAULT 'G',
+  special_features SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') DEFAULT NULL,
+  PRIMARY KEY  (film_id),
+  CONSTRAINT fk_film_language FOREIGN KEY (language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_language_original FOREIGN KEY (original_language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE film_actor (
+  actor_id SMALLINT UNSIGNED NOT NULL,
+  film_id SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY  (actor_id,film_id),
+  CONSTRAINT fk_film_actor_actor FOREIGN KEY (actor_id) REFERENCES actor (actor_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_actor_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE film_category (
+  film_id SMALLINT UNSIGNED NOT NULL,
+  category_id TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (film_id, category_id),
+  CONSTRAINT fk_film_category_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_category_category FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE series(
 	series_id INT(5) NOT NULL AUTO_INCREMENT,
 	title VARCHAR(70) DEFAULT 'TITLE' NOT NULL,
@@ -6,8 +56,9 @@ CREATE TABLE series(
 	original_language_id TINYINT UNSIGNED DEFAULT NULL,
 	rating ENUM('G','PG','PG-13','R','NC-17') DEFAULT 'G',
 	special_features SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') DEFAULT NULL,
-	season_id INT(5) NOT NULL ,
-	PRIMARY KEY (series_id)
+	PRIMARY KEY (series_id),
+    CONSTRAINT fk_series_language FOREIGN KEY (language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_series_language_original FOREIGN KEY (original_language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE seasons(
@@ -16,9 +67,7 @@ CREATE TABLE seasons(
 	number_of_episodes INT(3) DEFAULT '0' NOT NULL, 
 	release_year DATE NOT NULL,
 	PRIMARY KEY(series_id,season_number),
-	CONSTRAINT SERIESSEASONS
-	FOREIGN KEY (series_id)
-	REFERENCES series(series_id)
+	CONSTRAINT SERIESSEASONS FOREIGN KEY (series_id) REFERENCES series(series_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
