@@ -133,7 +133,7 @@ CREATE TABLE customer (
   customer_id smallint(5) UNSIGNED NOT NULL,
   address_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
-  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
   CONSTRAINT CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -141,14 +141,14 @@ CREATE TABLE customer (
 CREATE TABLE employee (
   employee_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
-  CONSTRAINT usremp FOREIGN KEY (employee_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT usremp FOREIGN KEY (employee_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE administrator (
   admin_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
-  CONSTRAINT usradm FOREIGN KEY (admin_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT usradm FOREIGN KEY (admin_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE xrhsths(
