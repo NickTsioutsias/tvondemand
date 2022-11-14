@@ -174,7 +174,7 @@ CREATE TABLE inventory (
   film_id SMALLINT UNSIGNED NOT NULL,
   series_id INT(5) NOT NULL,
   subscription_type ENUM ('MOVIES','SERIES','BOTH'),
-  PRIMARY KEY  (inventory_id,),
+  PRIMARY KEY  (inventory_id),
   CONSTRAINT fk_inventory_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT fk_sbstp FOREIGN KEY (subscription_type) REFERENCES customer_subscription(subscription_type) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT invsrs FOREIGN KEY (series_id) REFERENCES series(series_id) ON DELETE RESTRICT ON UPDATE CASCADE
