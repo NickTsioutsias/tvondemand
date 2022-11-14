@@ -140,7 +140,7 @@ CREATE TABLE customer (
 
 CREATE TABLE employee (
   employee_id smallint(5) UNSIGNED NOT NULL,
-  PRIMARY KEY (customer_id),
+  PRIMARY KEY (employee_id),
   CONSTRAINT usremp FOREIGN KEY (employee_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
