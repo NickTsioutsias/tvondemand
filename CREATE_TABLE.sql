@@ -133,8 +133,8 @@ CREATE TABLE customer (
   customer_id smallint(5) UNSIGNED NOT NULL,
   address_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
-  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
-  CONSTRAINT CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE 
+  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
