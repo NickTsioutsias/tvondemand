@@ -11,7 +11,7 @@ CREATE TABLE category (
   PRIMARY KEY  (category_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE 'language' (
+CREATE TABLE language (
   language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
   name CHAR(20) NOT NULL,
   PRIMARY KEY (language_id)
@@ -129,7 +129,7 @@ CREATE TABLE address (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE `customer` (
+CREATE TABLE customer (
   `customer_id` smallint(5) UNSIGNED NOT NULL,
   `address_id` smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
@@ -138,27 +138,27 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE `employee` (
-  `employee_id` smallint(5) UNSIGNED NOT NULL,
+CREATE TABLE employee (
+  employee_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
   CONSTRAINT usremp FOREIGN KEY (employee_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE `administrator` (
-  `admin_id` smallint(5) UNSIGNED NOT NULL,
+CREATE TABLE administrator (
+  admin_id smallint(5) UNSIGNED NOT NULL,
   PRIMARY KEY (customer_id),
   CONSTRAINT usradm FOREIGN KEY (admin_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
-create table 'user'(
-  `user_id` smallint(5) UNSIGNED NOT NULL,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 1,
-  `create_date` datetime NOT NULL
+create table user(
+  user_id smallint(5) UNSIGNED NOT NULL,
+  first_name varchar(45) NOT NULL,
+  last_name varchar(45) NOT NULL,
+  email varchar(50) DEFAULT NULL,
+  active tinyint(1) NOT NULL DEFAULT 1,
+  create_date datetime NOT NULL
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
