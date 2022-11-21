@@ -49,12 +49,9 @@ INSERT INTO xrhsths VALUES
 (4,'Giannis','Kyriakopoulos','GiKy@sth.com',1,'1980-01-01 00:00:00'),
 (5,'Liam','Popper','LiPo@sth.com',0,'1980-01-01 00:00:00');
 
-INSERT INTO `address` (`address_id`, `address`, `district`, `city_id`, `postal_code`, `phone`) VALUES
-(1, '1346 Mysore Drive', 'Bretagne', 1, '61507', '516647474029'),
-(2, '1740 Le Mans Loop',  'Pays de la Loire', 2, '22853', '168476538960'),
-(3, '1386 Yangor Avenue', 'Provence-Alpes-Cte', 3, '80720', '449216226468'),
-(4, '391 Callao Drive', 'Midi-Pyrnes', 4, '34021', '440512153169'),
-(5, '442 Rae Bareli Place', 'Nordrhein-Westfalen', 5, '24321', '886636413768');
+INSERT INTO `country` (`country_id`, `country`) VALUES
+(1, 'Greece'),
+(2, 'Germany');
 
 INSERT INTO `city` (`city_id`, `city`, `country_id`) VALUES
 (1, 'Brest', 1),
@@ -63,25 +60,23 @@ INSERT INTO `city` (`city_id`, `city`, `country_id`) VALUES
 (4, 'Toulouse', 1),
 (5, 'Duisburg', 2);
 
-INSERT INTO `country` (`country_id`, `country`) VALUES
-(1, 'Greece'),
-(2, 'Germany');
+INSERT INTO `address` (`address_id`, `address`, `district`, `city_id`, `postal_code`, `phone`) VALUES
+(1, '1346 Mysore Drive', 'Bretagne', 1, '61507', '516647474029'),
+(2, '1740 Le Mans Loop',  'Pays de la Loire', 2, '22853', '168476538960'),
+(3, '1386 Yangor Avenue', 'Provence-Alpes-Cte', 3, '80720', '449216226468'),
+(4, '391 Callao Drive', 'Midi-Pyrnes', 4, '34021', '440512153169'),
+(5, '442 Rae Bareli Place', 'Nordrhein-Westfalen', 5, '24321', '886636413768');
 
 INSERT INTO customer VALUES
-(1,1),
-(2,2),
-(3,3);
+(1,1,'MOVIES'),
+(2,2,'SERIES'),
+(3,3,'BOTH');
 
 INSERT INTO employee VALUES
 (4);
 
 INSERT INTO administrator VALUES
 (5);
-
-INSERT INTO customer_subscription VALUES
-(),
-(),
-();
 
 INSERT INTO rental VALUES
 (1,'2010-01-01 00:00:00',1,1),
