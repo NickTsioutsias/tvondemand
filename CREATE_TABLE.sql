@@ -132,9 +132,10 @@ CREATE TABLE address (
 CREATE TABLE customer (
   customer_id smallint(5) UNSIGNED NOT NULL,
   address_id smallint(5) UNSIGNED NOT NULL,
+  subscription_type ENUM ('MOVIES','SERIES','BOTH'),
   PRIMARY KEY (customer_id),
-  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES xrhsths (user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE 
+  CONSTRAINT usrcsu FOREIGN KEY (customer_id) REFERENCES xrhsths (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE CASCADE ON UPDATE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -162,16 +163,7 @@ CREATE TABLE xrhsths(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE customer_subscription(
-  subscription_id MEDIUMINT(3) UNSIGNED NOT NULL,
-  payment_id SMALLINT UNSIGNED NOT NULL,
-	customer_id SMALLINT(5) UNSIGNED NOT NULL,
-	subscription_type ENUM ('MOVIES','SERIES','BOTH'),
-	PRIMARY KEY(customer_id,subscription_id),
-  CONSTRAINT csbinv FOREIGN KEY (subscription_id) REFERENCES inventory(inventory_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT PMNTSBSCRPTNPMNT FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT CSTMRSBSCRPTNCSTMR FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 CREATE TABLE inventory (
   inventory_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
