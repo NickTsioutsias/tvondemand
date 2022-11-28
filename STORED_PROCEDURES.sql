@@ -97,7 +97,7 @@ BEGIN
 
 	SELECT actor.last_name, actor.first_name, COUNT(last_name)
     FROM actor
-	WHERE last_name LIKE surname1 AND surname2
+	WHERE last_name BETWEEN 'surname1' AND 'surname2'
 	ORDER BY last_name;
 
 END//
