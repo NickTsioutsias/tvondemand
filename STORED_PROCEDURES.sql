@@ -89,7 +89,7 @@ sp3: BEGIN
 END //
 DELIMITER ;	
 
-drop PROCEDURE show_name_actor;
+
 DELIMITER //
 
 CREATE PROCEDURE show_name_actor(IN surname1 VARCHAR(30),IN surname2 VARCHAR(30))

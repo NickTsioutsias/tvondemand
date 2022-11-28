@@ -8,7 +8,7 @@ BEGIN
 		(NEW.customer_id,NOW(),'Success','INSERT','rental');
 	ELSE INSERT INTO log VALUES
 		(NULL,NOW(),'Fail','INSERT','rental');
-	ENDIF;	
+	END IF;	
 END//
 DELIMITER ;
 
@@ -24,7 +24,7 @@ BEGIN
 	ELSE 
 		INSERT INTO log VALUES
 		(OLD.customer_id,NOW(),'Fail','UPDATE','rental');
-	ENDIF;
+	END IF;
 END//
 DELIMITER ;
 
@@ -40,7 +40,7 @@ BEGIN
 	ELSE
 		INSERT INTO log VALUES
 		(OLD.customer_id,NOW(),'Fail','DELETE','rental');
-	ENDIF;
+	END IF;
 END//
 DELIMITER ;
 
@@ -55,7 +55,7 @@ BEGIN
 		(NEW.customer_id,NOW(),'Success','INSERT','payment');
 	ELSE INSERT INTO log VALUES
 		(NULL,NOW(),'Fail','INSERT','payment');
-	ENDIF;	
+	END IF;	
 END//
 DELIMITER ;
 
@@ -71,7 +71,7 @@ BEGIN
 	ELSE 
 		INSERT INTO log VALUES
 		(OLD.customer_id,NOW(),'Fail','UPDATE','payment');
-	ENDIF;
+	END IF;
 END//
 DELIMITER ;
 
@@ -87,7 +87,7 @@ BEGIN
 	ELSE
 		INSERT INTO log VALUES
 		(OLD.customer_id,NOW(),'Fail','DELETE','payment');
-	ENDIF;
+	END IF;
 END//
 DELIMITER ;
 
@@ -109,6 +109,6 @@ FOR EACH ROW
 BEGIN
 	IF email LIKE'%customer.org' THEN
 	SIGNAL SQLSTATE '45000' SET MESSAGE TEXT = 'You cannot change your personal data.';
-	ENDIF;
+	END IF;
 END//
 DELIMITER ;
