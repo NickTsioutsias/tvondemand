@@ -104,11 +104,11 @@ DELIMITER ;
 
 DELIMITER //
 CREATE TRIGGER tri_8 BEFORE UPDATE
-ON USER
+ON xrhsths
 FOR EACH ROW
 BEGIN
-	IF email LIKE'%customer.org' THEN
-	SIGNAL SQLSTATE '45000' SET MESSAGE TEXT = 'You cannot change your personal data.';
+	 IF (new.email NOT LIKE old.email) THEN
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'You cannot change your personal data.';
 	END IF;
 END//
 DELIMITER ;

@@ -92,15 +92,22 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE show_name_actor(IN surname1 VARCHAR(30),IN surname2 VARCHAR(30))
+CREATE PROCEDURE get_actors(IN lastname_1 VARCHAR(32), IN lastname_2 VARCHAR(32))
 BEGIN
 
-	SELECT actor.last_name, actor.first_name, COUNT(last_name)
-    FROM actor
-	WHERE last_name BETWEEN 'surname1' AND 'surname2'
-	ORDER BY last_name;
+DECLARE total INT;
 
+CREATE TEMPORARY TABLE temp_actors
+SELECT first_name , last_name FROM actor WHERE last_name BETWEEN lastname_1 AND lastname_2
+ORDER BY last_name ASC;
+
+SELECT * FROM temp_actors;
+
+SELECT COUNT(*) INTO total FROM temp_actors ;
+SELECT 'count', total;
+DROP TEMPORARY TABLE IF EXISTS temp_actors;
 END//
+
 DELIMITER ;
 
 DELIMITER //
