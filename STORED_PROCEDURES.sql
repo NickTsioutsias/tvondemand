@@ -103,7 +103,6 @@ BEGIN
 END//
 DELIMITER ;
 
-drop PROCEDURE show_actor;
 DELIMITER //
 
 CREATE PROCEDURE show_actor(IN surname VARCHAR(45))	
